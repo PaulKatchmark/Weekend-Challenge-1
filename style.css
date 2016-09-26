@@ -1,0 +1,91 @@
+body {
+  padding: 1px 20px 20px 40px;
+  border: 0 10px 0 10px solid red;
+  display: block;
+  width: 80%;
+  margin-bottom: 150px;
+  background-image: url(https://hd.unsplash.com/photo-1470790376778-a9fbc86d70e2);
+
+}
+
+table, td {
+    border: 1px solid black;
+    align: center;
+}
+#myTable2 {
+  margin: 80px;
+  padding: 10px;
+}
+#emplyee-info {
+  text-align: center;
+  padding: 30px;
+}
+#monthlyExpenditure {
+  padding: 10px;
+  text-align: center;
+}
+
+#myTable {
+  margin: 40px 40px 40px 0;
+  padding: 10px;
+   }
+
+
+#employee-first-name {
+    margin: 15px;
+}
+#employee-last-name {
+  margin: 15px;
+}
+#employee-id {
+  margin: 15px;
+}
+#employee-title {
+  margin: 15px;
+}
+#employee-annual-salary {
+  margin: 15px;
+}
+h1 {
+  text-align: left;
+  font-family: arial;
+}
+button {
+  border-radius: 16px;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: blue;
+  color: #ffffff;
+  border: 2px solid black;
+  box-shadow: 0 8px #999;
+}
+button:hover {
+  background-color: #ffffff;
+  color: blue;
+}
+button:active {
+  background-color: blue;
+  color: #ffffff;
+  box-shadow: 0 2px #999;
+  transform: translateY(6px);
+}
+.btn-delete {
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: red;
+  color: #ffffff;
+  border: 2px solid black;
+  box-shadow: 0 8px #999;
+  transform: translateY(-6px);
+}
+.btn-delete:hover {
+  background-color: #ffffff;
+  color: red;
+}
+.btn-delete:active {
+  background-color: red;
+  color: #ffffff;
+  box-shadow: 0 2px #999;
+  transform: translateY(-2px);
+}
