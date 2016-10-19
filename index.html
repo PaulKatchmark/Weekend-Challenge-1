@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>jQuery Form Lecture</title>
+    <meta charset="utf-8">
+    <title>jQuery Form Lecture</title>
 
-  <script src="jquery-3.1.1.min.js" charset="utf-8"></script>
-  <script src="app.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="app.js" charset="utf-8"></script>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
-  <h1>Employee Information</h1>
-  <form id="employee-info">
-    <label for="employee-first-name">First Name:</label>
-    <input type="text" id="employee-first-name" name="employee-first-name"/>
+    <main ng-app="employeeApp">
+        <section ng-controller="EmpController as emp">
 
-    <label for="employee-last-name">Last Name:</label>
-    <input type="text" id="employee-last-name" name="employee-last-name"/><br />
 
-    <label for="employee-id">ID Number:</label>
-    <input type="text" id="employee-id" name="employee-id"/>
+            <h1>Employee Information</h1>
+            <form id="employee-info">
+                <label for="employee-first-name">First Name:</label>
+                <input type="text" id="employee-first-name" name="employee-first-name" ng-model="emp.info.firstName" />
 
-    <label for="employee-title">Position:</label>
-    <input type="text" id="employee-title" name="employee-title"/><br />
+                <label for="employee-last-name">Last Name:</label>
+                <input type="text" id="employee-last-name" name="employee-last-name" ng-model="emp.info.lastName" /><br />
 
-    <label for="employee-annual-salary">Annual Salery:</label>
-    <input type="text" id="employee-annual-salary" name="employee-annual-salary" />
+                <label for="employee-id">ID Number:</label>
+                <input type="number" id="employee-id" name="employee-id" ng-model="emp.info.id" />
 
-    <button type="submit">Submit</button>
+                <label for="employee-title">Position:</label>
+                <input type="text" id="employee-title" name="employee-title" ng-model="emp.info.position" /><br />
 
-  </form>
+                <label for="employee-annual-salary">Annual Salery:</label>
+                <input type="number" id="employee-annual-salary" name="employee-annual-salary" ng-model="emp.info.salary" />
 
-  <table id="myTable">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Annual Salary</th>
-    <th></th>
-  </tr>
-  </table>
+                <button type="submit" ng-click="emp.createInfo()">Submit</button>
 
-<table class="myTable2">
-  <tr>
-<th><h4>Monthly Salary Expenditure:</h4></th>
-<th><h4 id="monthlyExpenditure"></h4></th>
-  </tr>
-</table>
+            </form>
 
+            <table id="myTable">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Annual Salary</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="info in emp.infos">
+                    <td>{{ info.firstName }}</td>
+                    <td>{{ info.lastName }}</td>
+                    <td>{{ info.id }}</td>
+                    <td>{{ info.position }}</td>
+                    <td>{{ info.salary | currency }}</td>
+                    <td><button value="remove" class="btn-delete" ng-click="emp.removeRow(info)">Delete</button></td>
+                </tr>
+            </table>
+
+            <table class="myTable2">
+                <tr>
+                    <th>
+                        <h4>Monthly Salary Expenditure:</h4></th>
+                    <th>
+                        <h4 id="monthlyExpenditure">{{emp.totalSalary/12 | currency}}</h4></th>
+                </tr>
+            </table>
+        </section>
+    </main>
 </body>
+
 </html>

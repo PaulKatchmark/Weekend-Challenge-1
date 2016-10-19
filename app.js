@@ -1,54 +1,28 @@
-$(document).ready(function()  {
-  $("#employee-info").on('submit', function (event)  {
-    event.preventDefault(); //stop default submit event behavior
+var app = angular.module('employeeApp', []);
 
+app.controller('EmpController', function() {
+    console.log("EmpController loaded");
 
-    var employee = {}; //empty object we plan to poptulate
+    var person = this;
+    person.infos = [];
+    person.totalSalary = 0;
 
-    var fields = $("#employee-info").serializeArray(); // jQuery function gives us form fields/inputs
-    console.log('fields', fields);
+    person.createInfo = function() {
+        person.infos.push(angular.copy(person.info)); //enters all submitted information in our array
+        person.info = null; //clears input fields after function is called
+        person.calculateAverage(); //function is run on submit to calculate total month expenses
+    };
 
-    fields.forEach(function (element, index)  {  // loop over array elements
-      employee[element.name] = element.value;   // add property and value to employee object
+    person.removeRow = function(info) { //function to remove a specific table row cooresponding with the appropriate delete button
+        var index = person.infos.indexOf(info); //variable that we will target
+        person.infos.splice(index, 1); //removes the appropriate index value of the array
+        person.totalSalary -= info.salary; //subtracts that row's salary from the totalSalary upon deletion
+    };
 
-    });
-    console.log('employee object', employee);
-
-    // clear form data
-    $("#employee-info").find('input[type=text]').val('');
-
-    // appending to the DOM
-    appendDom(employee);
-  });
-
-    function appendDom(emp) {
-
-      var $info = $('#myTable');  //create a div jQuery object
-      $info.append('<tr><td>' + emp['employee-first-name'] + '</td> <td>' + emp['employee-last-name'] +
-      '</td> <td>' + emp["employee-id"] + '</td> <td>' + emp["employee-title"] + '</td> <td>' + emp["employee-annual-salary"]
-      +'</td> <td><button type="button" class="btn btn-delete">Delete</button></td></tr>'); //add our employee data
-
-      $("#myTable").append($info); //append our div to the DOM
-
-  $(document).on('click', '.btn-delete', function() {  //allowing the delete button created to function by removing the nearest row.
-    $(this).closest('tr').remove();
-  });
-
-  var myArray = new Array(); //creating a new array
-
-  $('#myTable tr td:nth-child(5)').each(function(i) {   //array will store the emp["employee-annual-salary"] info when it is submitted
-    myArray.push($(this).text());  //the array will contintue to add new values as they are entered
-    for (var i = 0; i < myArray.length; i++) {
-      myArray[i] = parseInt(myArray[i]); //changing the strings to values to allow for calculations in the future
-    }
-  });
-
-var monthlyTotal = 0; //creating a new variable to store the montly cost of all employees annual salaries
-for(var i = 0; i < myArray.length; i++) {
-  monthlyTotal += myArray[i] << 0; //this will allow the monthlyTotal to update each time a new employees information is submitted
-}
-monthlyTotal = Math.round(monthlyTotal/12); //will take the total of all salaries divide them by 12 and round them off.
-
-$('#monthlyExpenditure').html(monthlyTotal); //appending our monthlyTotal so it displays on our page
-}
+    person.calculateAverage = function() { //function that is used to calculate total of all salaires, then it is divided by 12 and converted to U.S. dollars on the html side
+        person.totalSalary = 0; //resets value of totalSalary everytime function is run
+        person.infos.forEach(function(employee) { //checks each array that is entered
+            person.totalSalary += employee.salary; //and adds the new salary to the totalSalary
+        });
+    };
 });
