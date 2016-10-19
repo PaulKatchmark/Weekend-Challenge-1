@@ -19,10 +19,10 @@
 ##### A submit button that clears out the form and stores the submitted information.
 
 ### Monthly Expenditure calculator
-##### Calculates the total annual salaries and divides the total number by 12.
+##### Calculates the total annual salaries, divides the total number by 12 and converts the total to U.S. dollars.
 
 ### Delete button
-##### The delete button clears out all the information pertaining to the specific employee it is next to.
+##### The delete button clears out all the information pertaining to the specific employee it is next to and also recalculates to total monthly expenditures.
 
 ## Usage
 ##### You can repo and git clone locally if you would like to use this application.
