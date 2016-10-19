@@ -18,23 +18,29 @@
 
 
             <h1>Employee Information</h1>
-            <form id="employee-info">
+            <form id="employee-info" name = "employeeForm" novalidate>
                 <label for="employee-first-name">First Name:</label>
-                <input type="text" id="employee-first-name" name="employee-first-name" ng-model="emp.info.firstName" />
+                <input type="text" id="employee-first-name" name="firstName" ng-model="emp.info.firstName" required/>
+                <span style = "color:red" ng-show = "employeeForm.firstName.$error.required">Required</span>
 
                 <label for="employee-last-name">Last Name:</label>
-                <input type="text" id="employee-last-name" name="employee-last-name" ng-model="emp.info.lastName" /><br />
+                <input type="text" id="employee-last-name" name="lastName" ng-model="emp.info.lastName" required/>
+                <span style = "color:red" ng-show = "employeeForm.lastName.$error.required">Required</span><br />
 
                 <label for="employee-id">ID Number:</label>
-                <input type="number" id="employee-id" name="employee-id" ng-model="emp.info.id" />
+                <input type="number" id="employee-id" name="id" ng-model="emp.info.id" required/>
+                <span style = "color:red" ng-show = "employeeForm.id.$error.required">Required</span>
 
                 <label for="employee-title">Position:</label>
-                <input type="text" id="employee-title" name="employee-title" ng-model="emp.info.position" /><br />
+                <input type="text" id="employee-title" name="position" ng-model="emp.info.position" required/>
+                <span style = "color:red" ng-show = "employeeForm.position.$error.required">Required</span><br />
 
                 <label for="employee-annual-salary">Annual Salery:</label>
-                <input type="number" id="employee-annual-salary" name="employee-annual-salary" ng-model="emp.info.salary" />
+                <input type="number" id="employee-annual-salary" name="salary" ng-model="emp.info.salary" required/>
+                <span style = "color:red" ng-show = "employeeForm.salary.$error.required">Required</span>
 
-                <button type="submit" ng-click="emp.createInfo()">Submit</button>
+                <button type="submit" <button ng-disabled = "employeeForm.firstName.$invalid || employeeForm.lastName.$invalid ||
+                        employeeForm.id.$invalid || employeeForm.position.$invalid || employeeForm.salary.$invalid" ng-click="emp.createInfo()">Submit</button>
 
             </form>
 
