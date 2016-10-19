@@ -22,7 +22,7 @@
 ##### Calculates the total annual salaries, divides the total number by 12 and converts the total to U.S. dollars.
 
 ### Delete button
-##### The delete button clears out all the information pertaining to the specific employee it is next to and also recalculates to total monthly expenditures.
+##### The delete button clears out all the information pertaining to the specific employee it is next to and also recalculates the total monthly expenditures.
 
 ## Usage
 ##### You can repo and git clone locally if you would like to use this application.
